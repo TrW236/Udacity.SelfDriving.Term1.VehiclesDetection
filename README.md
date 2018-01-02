@@ -1,6 +1,6 @@
 # Vehicle Detection Project
 
-## Other Nessesary Files and Dependencies
+## Other Necessary Files and Dependencies
 
 Please visit the [repository](https://github.com/udacity/CarND-Vehicle-Detection) from Udacity
 
@@ -19,7 +19,7 @@ and [non-vehicles](https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/non-veh
 
 In ``image_processing.py`` the function ``bin_spatial`` is defined to extract spatial bins features from a picture. To notice is that when we
 use ``pyplot.imread`` to read a ``png`` image, the scale of the data will be ``[0, 1]``, comparatively to read ``jpg`` we will get a scale ``[0, 255]``. So after the ``png`` images are loaded, they will be
-scaled (multiplied with 255) like ``tst_car *= 255``.
+scaled (multiplied by 255) like ``tst_car *= 255``.
 
 The spatial bins features extracted from test picture is below. We can see that all the different color channels will make much difference between car and notcar images.
 
@@ -40,7 +40,7 @@ HOG features from one channel of a picture.
 
 I have taken different experiments to determine how the HOG features would be extracted.
 
-Below is the comparisons between HOG images of different channels. We can see that channel YCrCb and HLS make more difference between car and notcar.
+Below are the comparisons between HOG images of different channels. We can see that channel YCrCb and HLS make more difference between car and notcar.
 
 <img src="https://filedn.com/lUE8ye7yWpzFOF1OFLVsPau/Github/vehicleDetection/hog1.png" alt="examples HOG different channels" width="888">
 
@@ -70,7 +70,7 @@ X_scaler = StandardScaler().fit(X)
 scaled_X = X_scaler.transform(X)
 ```
 
-To notice that, ``X`` must be a ``n x m`` array, whereby ``n`` is the number of the datasets and must ``> 1`` here and ``m``
+To notice that, ``X`` must be an ``n x m`` array, whereby ``n`` is the number of the datasets and must ``> 1`` here and ``m``
 is the number of the features.
 
 A test result is below.
@@ -91,16 +91,16 @@ In ``classification.py`` the function ``predict_trained_model`` is defined to pr
 ### 1. Extract features in each window
 
 In ``search_cars.py`` two functions ``gen_windows_single_layer`` and ``gen_all_windows`` are defined to realize the sliding windows searching.
-Function ``gen_windows_single_layer`` is to generate a row of windows and ``gen_all_windows`` is to generate all windows in search field.
+Function ``gen_windows_single_layer`` is to generate a row of windows and ``gen_all_windows`` is to generate all windows in the search field.
 A function ``search_windows``is defined to search the cars with this method, a test result is below.
 
 A test Result is shown below.
 
 <img src="https://filedn.com/lUE8ye7yWpzFOF1OFLVsPau/Github/vehicleDetection/slide_wins_notsub.png" alt="sliding windows not HOG" width="888">
 
-To mention is that, using this method it will take relatively long time to process the image, in oder to get a satisfactory result.
+To mention is that, using this method it will take relatively long time to process the image, in order to get a satisfactory result.
 
-### 2. Using heatmap method to get a more precise result
+### 2. Using heat map method to get a more precise result
 
 In ``search_cars.py`` function ``add_heat``, ``apply_threshold`` are defined to apply the heatmap method.
 A test result is below.
@@ -109,7 +109,7 @@ A test result is below.
 
 ### 3. Extract HOG features once in one picture
 
-Because the method above will take a lot of time to compute. So the HOG sub-sampling method is used.
+Because the method above will take a lot of time to compute, the HOG sub-sampling method is used.
 In ``search_cars.py`` the function ``find_cars`` is defined.
 
 A test result is shown below.
@@ -131,10 +131,10 @@ A test result for sub HOG sampling is below. We can see that the result is satis
 
 I used the HOG sub-sampling method to process the video.
  
-In ``process_pipeline.py`` the class ``Pipeline_subsamp`` is defined to perform a full search in method ``img_process``
+In ``process_pipeline.py`` the class ``Pipeline_subsamp`` is defined to perform a full search method. ``img_process``
 and method ``img_process_small`` is to perform the small search.
 
-Class ``Organizer`` is defined to control the video processing. It is responsible to decide to use small searching or full searching method.
+Class ``Organizer`` is defined to control the video processing. It is responsible for deciding to use small searching or full searching method.
 
 
 ## Result and Final Effect
@@ -143,9 +143,9 @@ The result is ``result.mp4`` and uploaded on Youtube. [[link]](https://www.youtu
 
 ## Discussion
 
-The algorithm is not very stable, it will detect sometimes non-cars and lose the detections of the real cars. The improvements can be:
+The algorithm is not very stable; it will sometimes detect non-cars and lose the detections of the real cars. The improvements can be:
 
-* To extract features of samples should be studied for more effective detection. For example which color spaces should be used.
+* To extract features of samples should be studied for more efficient detection. For example which color spaces should be used.
 
 * Using more complex learning algorithm and more data to train the classifier.
 
